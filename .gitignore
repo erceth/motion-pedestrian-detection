@@ -1,3 +1,5 @@
+output*.png
 output-detect*.png
 __pycache__
 .vscode
+notes.md

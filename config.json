@@ -1,8 +1,9 @@
 {
   "general": {
     "pythonPath": "/Users/ericethington/.pyenv/versions/cv-3.6.10/bin/python3",
+    "imshow": 1,
     "writeOutput": 1,
-    "imshow": 1
+    "writeTransparentOutput": 1
   },
   "cameras": [
     {

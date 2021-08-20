@@ -9,18 +9,19 @@ f = open('config.json',)
 config = json.load(f)
 f.close
 
-pythonPath,writeOutput,imshow = itemgetter('pythonPath','writeOutput','imshow')(config['general'])
+pythonPath,imshow,writeOutput,writeTransparentOutput = itemgetter('pythonPath','imshow','writeOutput','writeTransparentOutput')(config['general'])
 ip,path = itemgetter('ip','path')(config['cameras'][0])
 detectFps,height,width,minPixelSize,motionDeltaThreshold,motionPaddingCutoutPercent,cutOutHeightLimit,checkNLargestObjects,windowStride,hogPadding,hogScale,hogHitThreshold,nonMaxSuppressionThreshold = itemgetter('detectFps','height','width','minPixelSize','motionDeltaThreshold','motionPaddingCutoutPercent','cutOutHeightLimit','checkNLargestObjects','windowStride','hogPadding','hogScale','hogHitThreshold','nonMaxSuppressionThreshold')(config['cameras'][0]['detectParameters'])
 index = 0
-detector = detect.Detect(height, width)
-
-print(detectFps,height,width,minPixelSize)
+detector = detect.Detect(index,height,width,minPixelSize,motionDeltaThreshold,motionPaddingCutoutPercent,cutOutHeightLimit,checkNLargestObjects,windowStride,hogPadding,hogScale,hogHitThreshold,nonMaxSuppressionThreshold,imshow,writeOutput,writeTransparentOutput)
 
 streamInput = f'rtsp://{ip}{path}'
 
-command1 = ['ffmpeg', '-i', streamInput, '-f', 'image2pipe', '-vf', f'fps={detectFps}', '-pix_fmt', 'bgr24', '-vcodec', 'rawvideo', '-an', 'pipe:1']
-p1 = subprocess.Popen(command1, stdout=subprocess.PIPE)
+command = ['ffmpeg', '-i', streamInput, '-f', 'image2pipe', '-vf', f'fps={detectFps}', '-pix_fmt', 'bgr24', '-vcodec', 'rawvideo', '-an', 'pipe:1']
+stringCommand = ' '.join(command)
+print('ffmpeg arguments:', stringCommand)
+
+p1 = subprocess.Popen(command, stdout=subprocess.PIPE)
 
 while True:
   raw_frame = p1.stdout.read(width*height*3)
@@ -31,4 +32,4 @@ while True:
   frame = np.fromstring(raw_frame, np.uint8)
   frame = frame.reshape((height, width, 3))
 
-  detector.processFrame(frame, index,imshow,writeOutput,height,width,minPixelSize,motionDeltaThreshold,motionPaddingCutoutPercent,cutOutHeightLimit,checkNLargestObjects,windowStride,hogPadding,hogScale,hogHitThreshold,nonMaxSuppressionThreshold)
+  detector.processFrame(frame)

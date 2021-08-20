@@ -18,10 +18,11 @@ hogPadding = int(sys.argv[10])
 hogScale = float(sys.argv[11])
 hogHitThreshold = int(sys.argv[12])
 nonMaxSuppressionThreshold = float(sys.argv[13])
-writeOutput = int(sys.argv[14])
-imshow = int(sys.argv[15])
+imshow = int(sys.argv[14])
+writeOutput = int(sys.argv[15])
+writeTransparentOutput = int(sys.argv[16])
 
-detector = detect.Detect(height, width)
+detector = detect.Detect(index,height,width,minPixelSize,motionDeltaThreshold,motionPaddingCutoutPercent,cutOutHeightLimit,checkNLargestObjects,windowStride,hogPadding,hogScale,hogHitThreshold,nonMaxSuppressionThreshold,imshow,writeOutput,writeTransparentOutput)
 
 while True:
   try:
@@ -31,7 +32,7 @@ while True:
     frame = np.fromstring(raw_data, np.uint8)
     frame = frame.reshape((height, width, 3))
     
-    detector.processFrame(frame, index,imshow,writeOutput,height,width,minPixelSize,motionDeltaThreshold,motionPaddingCutoutPercent,cutOutHeightLimit,checkNLargestObjects,windowStride,hogPadding,hogScale,hogHitThreshold,nonMaxSuppressionThreshold)
+    detector.processFrame(frame)
 
   except cv2.error as e:
     print('python exception', e, flush=True)
