@@ -1,0 +1,28 @@
+{
+  "general": {
+    "pythonPath": "/Users/ericethington/.pyenv/versions/cv-3.6.10/bin/python3",
+    "writeOutput": 1,
+    "imshow": 1
+  },
+  "cameras": [
+    {
+      "ip": "192.168.7.88",
+      "path": "/axis-media/media.amp?resolution=640x480",
+      "detectParameters": {
+        "detectFps": 2,
+        "width": 640,
+        "height": 480,
+        "minPixelSize": 5000,
+        "motionDeltaThreshold": 5,
+        "motionPaddingCutoutPercent": 0.2,
+        "cutOutHeightLimit": 150,
+        "checkNLargestObjects": 1,
+        "windowStride": 4,
+        "hogPadding": 4,
+        "hogScale": 1.05,
+        "hogHitThreshold": 0,
+        "nonMaxSuppressionThreshold": 0.65
+      }
+    }
+  ]
+}
