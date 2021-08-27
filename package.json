@@ -1,0 +1,27 @@
+{
+  "name": "motion-pedestrian-detection",
+  "version": "1.0.0",
+  "description": "Motion Pedestrian Detection uses openCV to detect motion from a series of images and searches for pedestrians in the sections of images where motion is detected.",
+  "main": "driver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erceth/motion-pedestrian-detection.git"
+  },
+  "keywords": [
+    "pedestrian",
+    "detection",
+    "openCV",
+    "motion",
+    "detection",
+    "ffmpeg"
+  ],
+  "author": "Eric Ethington",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erceth/motion-pedestrian-detection/issues"
+  },
+  "homepage": "https://github.com/erceth/motion-pedestrian-detection#readme"
+}
