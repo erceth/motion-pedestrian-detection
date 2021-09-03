@@ -122,6 +122,8 @@ Config settings:
 }
 ```
 
+# Used
+Used in OpenCV FFmpeg HLS Video Management System: [https://github.com/erceth/OPENCV-FFMPEG-HLS-VMS-JS-PY-public](https://github.com/erceth/OPENCV-FFMPEG-HLS-VMS-JS-PY-public)
 
 
 # blog posts inspiration
